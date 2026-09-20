@@ -287,6 +287,16 @@
   .cbo .ad{font-size:12.5px;padding:7px 9px;border-radius:8px;background:var(--panel);border:1px solid var(--line2);color:#dfe9e4;display:flex;justify-content:space-between}
   .cbo .ad em{color:var(--mint);font-style:normal;font-weight:800}
   .cbo .set.scale{border-style:solid;border-color:rgba(255,210,63,.6)}
+  /* lección 5: flujo y frames */
+  .pipe{display:grid;gap:10px;margin:20px 0}
+  .pp{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:start;padding:14px 16px;border:1px solid var(--line2);border-radius:14px;background:var(--panel)}
+  .pp .pk{font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--mint)}
+  .pp .pt{font-size:15px;color:#dfe9e4}
+  @media(max-width:640px){.pp{grid-template-columns:1fr}}
+  .frames{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:20px 0}
+  @media(max-width:980px){.frames{grid-template-columns:repeat(3,1fr)}} @media(max-width:560px){.frames{grid-template-columns:repeat(2,1fr)}}
+  .fr{background:var(--black);border:1px solid var(--line2);border-radius:14px;padding:12px;aspect-ratio:9/12;display:flex;flex-direction:column;justify-content:flex-end}
+  .fr .fp{font-size:11px;font-weight:900;letter-spacing:.12em;color:var(--mint)} .fr .fn{font-size:15px;font-weight:800;color:#fff;margin:4px 0} .fr .fd{font-size:12px;color:var(--muted);line-height:1.4}
   /* señales */
   .sig{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0}
   @media(max-width:820px){.sig{grid-template-columns:1fr}}
