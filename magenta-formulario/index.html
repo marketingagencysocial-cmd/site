@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Formulario Magenta Capilar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root {
+    --bg: #FBF8F9;
+    --surface: #FFFFFF;
+    --ink: #221A1E;
+    --muted: #6E5F67;
+    --line: #E8DCE2;
+    --accent: #C2185B;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #FBE3EE;
+    --go: #2E7D32;
+    --go-soft: #E3F1E4;
+    --stop: #C62828;
+    --stop-soft: #FBE4E4;
+    --note: #FFF6DB;
+    --note-ink: #6B4E00;
+    --code-bg: #F6EFF2;
+    --shadow: 0 1px 2px rgba(60, 20, 40, .06), 0 8px 24px rgba(60, 20, 40, .06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #171115;
+      --surface: #211920;
+      --ink: #F4ECF0;
+      --muted: #AC9DA5;
+      --line: #3A2C34;
+      --accent: #FF63AC;
+      --accent-ink: #1A0A12;
+      --accent-soft: #3B1F2E;
+      --go: #7BD389;
+      --go-soft: #1E3322;
+      --stop: #FF7B7B;
+      --stop-soft: #3E1F1F;
+      --note: #33290F;
+      --note-ink: #F1D98A;
+      --code-bg: #2B1F27;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #171115;
+    --surface: #211920;
+    --ink: #F4ECF0;
+    --muted: #AC9DA5;
+    --line: #3A2C34;
+    --accent: #FF63AC;
+    --accent-ink: #1A0A12;
+    --accent-soft: #3B1F2E;
+    --go: #7BD389;
+    --go-soft: #1E3322;
+    --stop: #FF7B7B;
+    --stop-soft: #3E1F1F;
+    --note: #33290F;
+    --note-ink: #F1D98A;
+    --code-bg: #2B1F27;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    padding-inline: 20px;
+    padding-block: 0 80px;
+  }
+  h1, h2, h3, h4 {
+    font-family: "Outfit", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.15;
+    text-wrap: balance;
+    margin: 0;
+  }
+  p { margin: 0; }
+  a { color: var(--accent); }
+
+  .wrap { max-width: 1040px; margin: 0 auto; }
+
+  /* Header */
+  .hero {
+    padding-block: 48px 28px;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 14px;
+  }
+  .eyebrow {
+    font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .hero h1 { font-size: clamp(30px, 4.5vw, 44px); font-weight: 700; }
+  .hero p.lead { font-size: 19px; color: var(--muted); max-width: 62ch; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 10px 18px;
+    font-size: 14px; color: var(--muted);
+  }
+  .meta b { color: var(--ink); font-weight: 600; }
+
+  /* Layout */
+  .layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 40px;
+    padding-top: 32px;
+  }
+  @media (max-width: 820px) {
+    .layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    nav.toc { position: static !important; }
+  }
+  nav.toc {
+    position: sticky; top: calc(16px + env(safe-area-inset-top, 0px));
+    align-self: start;
+    display: grid; gap: 4px;
+    font-size: 14px;
+  }
+  nav.toc .toc-title {
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 6px; font-weight: 600;
+  }
+  nav.toc a {
+    color: var(--ink); text-decoration: none; padding: 6px 10px; border-radius: 6px;
+    display: flex; gap: 8px; align-items: baseline;
+  }
+  nav.toc a:hover, nav.toc a:focus-visible { background: var(--accent-soft); outline: none; }
+  nav.toc a .n { color: var(--accent); font-family: "Outfit", sans-serif; font-weight: 600; min-width: 1.6em; }
+
+  main { display: grid; gap: 40px; min-width: 0; }
+  section { display: grid; gap: 16px; scroll-margin-top: 20px; }
+  section > h2 { font-size: 26px; font-weight: 600; }
+  section > h2 .n {
+    display: inline-grid; place-items: center;
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink);
+    font-size: 17px; margin-right: 12px; vertical-align: middle;
+  }
+  .intro-text { max-width: 66ch; }
+
+  /* Step blocks */
+  .step-grid { display: grid; gap: 14px; }
+  .block {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: grid; gap: 10px;
+  }
+  .block h4 {
+    font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600;
+  }
+  .block ul, .block ol { margin: 0; padding-left: 22px; display: grid; gap: 6px; }
+  .block li::marker { color: var(--accent); font-weight: 600; }
+  .ui { /* nombre de un botón o menú tal cual aparece en pantalla */
+    display: inline-block; padding: 1px 8px; border-radius: 6px;
+    border: 1px solid var(--line); background: var(--code-bg);
+    font-weight: 600; font-size: .94em; white-space: nowrap;
+  }
+  .check {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: var(--go-soft); border-radius: 10px; padding: 12px 14px;
+  }
+  .check .ico { color: var(--go); font-weight: 700; }
+  .warn {
+    background: var(--note); color: var(--note-ink);
+    border-radius: 10px; padding: 12px 14px;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .warn .ico { font-weight: 700; }
+
+  /* Copy fields */
+  .copy {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: start;
+    background: var(--code-bg); border: 1px dashed var(--line); border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .copy .label { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+  .copy .text { font-family: "Source Sans 3", sans-serif; white-space: pre-wrap; word-break: break-word; }
+  .copy button {
+    font: inherit; font-size: 14px; font-weight: 600;
+    background: var(--accent); color: var(--accent-ink);
+    border: 0; border-radius: 8px; padding: 8px 14px; cursor: pointer;
+    min-width: 92px;
+  }
+  .copy button:hover { filter: brightness(1.06); }
+  .copy button:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 1px; }
+  .copy button.done { background: var(--go); color: #fff; }
+  @media (max-width: 520px) {
+    .copy { grid-template-columns: minmax(0, 1fr); }
+    .copy button { justify-self: start; }
+  }
+
+  /* Answer tables */
+  .tbl-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 16px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .chip {
+    display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 14px; font-weight: 600; white-space: nowrap;
+  }
+  .chip.go { background: var(--go-soft); color: var(--go); }
+  .chip.stop { background: var(--stop-soft); color: var(--stop); }
+  .chip.next { background: var(--accent-soft); color: var(--accent); }
+
+  /* Flow map */
+  .flow {
+    display: grid; gap: 8px;
+    font-size: 15px;
+  }
+  .flow .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .flow .node {
+    padding: 8px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line);
+    font-weight: 600;
+  }
+  .flow .node.end-ok { border-color: var(--go); color: var(--go); }
+  .flow .node.end-no { border-color: var(--stop); color: var(--stop); }
+  .flow .arrow { color: var(--muted); }
+
+  /* Checklist */
+  .todo { display: grid; gap: 8px; }
+  .todo label {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+    cursor: pointer;
+  }
+  .todo input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: none; }
+  .todo label span small { display: block; color: var(--muted); font-size: 14px; }
+
+  details { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: 12px 16px; }
+  details summary { cursor: pointer; font-weight: 600; font-family: "Outfit", sans-serif; }
+  details p { margin-top: 8px; }
+
+  footer { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .copy button { transition: background .2s, filter .15s; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Meta Ads · Formulario instantáneo · Clientes potenciales</div>
+    <h1>Formulario Magenta Capilar</h1>
+    <p class="lead">Cómo crear el formulario de calificación en Ads Manager, clic por clic. Cada texto que hay que escribir viene en un recuadro con botón <b>Copiar</b>. Tiempo estimado: 15 minutos.</p>
+    <div class="meta">
+      <span>Cuenta publicitaria: <b>331651138</b> (Magentaoficial)</span>
+      <span>Página: <b>Magenta Cosmética Artesanal</b></span>
+      <span>Campaña ya creada: <b>🟣 MAGENTA CAPILAR / CBO / Leads Maquila / Formulario | 011026</b></span>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Pasos">
+      <div class="toc-title">Contenido</div>
+      <a href="#antes"><span class="n">0</span> Antes de empezar</a>
+      <a href="#mapa"><span class="n">→</span> Cómo funciona</a>
+      <a href="#p1"><span class="n">1</span> Entrar y crear</a>
+      <a href="#p2"><span class="n">2</span> Tipo de formulario</a>
+      <a href="#p3"><span class="n">3</span> Introducción</a>
+      <a href="#p4"><span class="n">4</span> Lógica condicional</a>
+      <a href="#p5"><span class="n">5</span> Pregunta 1</a>
+      <a href="#p6"><span class="n">6</span> Preguntas 2, 3 y 4</a>
+      <a href="#p7"><span class="n">7</span> Datos de contacto</a>
+      <a href="#p8"><span class="n">8</span> Privacidad</a>
+      <a href="#p9"><span class="n">9</span> Páginas finales</a>
+      <a href="#p10"><span class="n">10</span> Publicar</a>
+      <a href="#p11"><span class="n">11</span> Enviar el ID</a>
+      <a href="#ayuda"><span class="n">?</span> Si algo sale mal</a>
+    </nav>
+
+    <main>
+
+      <!-- 0 -->
+      <section id="antes">
+        <h2><span class="n">0</span>Antes de empezar</h2>
+        <p class="intro-text">Ten estas cuatro cosas a la mano. Sin la política de privacidad, Meta no deja publicar el formulario.</p>
+        <div class="todo">
+          <label><input type="checkbox" id="c1"><span>Acceso a Ads Manager con la cuenta <b>331651138</b> y permiso sobre la Página <b>Magenta Cosmética Artesanal</b>.</span></label>
+          <label><input type="checkbox" id="c2"><span>El <b>link de la política de privacidad</b> de Magenta Capilar (una página pública en su sitio web). <small>Si no existe, pedirla a la clienta hoy: es obligatoria.</small></span></label>
+          <label><input type="checkbox" id="c3"><span>El <b>número de WhatsApp</b> donde van a atender los leads, con indicativo (57 + número).</span></label>
+          <label><input type="checkbox" id="c4"><span>Esta guía abierta en otra ventana, para ir copiando los textos.</span></label>
+        </div>
+      </section>
+
+      <!-- Mapa -->
+      <section id="mapa">
+        <h2><span class="n">→</span>Cómo funciona el formulario</h2>
+        <p class="intro-text">Son 4 preguntas de opción múltiple, luego los datos de contacto, y dos pantallas finales. La única pregunta que descarta gente es la primera: quien pide <b>menos de 30 unidades</b> ve una pantalla distinta y no queda como lead.</p>
+        <div class="block">
+          <div class="flow">
+            <div class="row"><span class="node">P1 ¿Qué quieres producir?</span><span class="arrow">→ respuestas A, B, C →</span><span class="node">P2 Tipo de negocio</span><span class="arrow">→</span><span class="node">P3 Cuándo</span><span class="arrow">→</span><span class="node">P4 Presupuesto</span><span class="arrow">→</span><span class="node">Datos de contacto</span><span class="arrow">→</span><span class="node end-ok">Página final: leads (WhatsApp)</span></div>
+            <div class="row"><span class="node">P1 ¿Qué quieres producir?</span><span class="arrow">→ respuesta D (menos de 30) →</span><span class="node end-no">Cerrar formulario → Página final: muestras</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1 -->
+      <section id="p1">
+        <h2><span class="n">1</span>Entrar y crear el formulario</h2>
+        <div class="step-grid">
+          <div class="block">
+            <h4>Qué haces</h4>
+            <ol>
+              <li>Abre <a href="https://business.facebook.com/adsmanager" target="_blank" rel="noopener">business.facebook.com/adsmanager</a>.</li>
+              <li>Arriba a la izquierda, verifica que la cuenta seleccionada sea <b>331651138</b>.</li>
+              <li>En el menú de la izquierda pasa el mouse por el ícono de los <span class="ui">9 puntitos</span> (se llama <span class="ui">Todas las herramientas</span>).</li>
+              <li>En la lista que se abre, busca <span class="ui">Formularios instantáneos</span> y dale clic.</li>
+              <li>Clic en el botón <span class="ui">Crear formulario</span>. Si pregunta con qué Página, elige <b>Magenta Cosmética Artesanal</b>.</li>
+            </ol>
+          </div>
+          <div class="block">
+            <h4>Qué escribes</h4>
+            <div class="copy"><div><div class="label">Nombre del formulario (solo lo ve el equipo)</div><div class="text">Magenta Capilar — Cupo en planta (leads maquila)</div></div><button type="button" data-copy>Copiar</button></div>
+          </div>
+          <div class="check"><span class="ico">✓</span><span>Se abre una ventana grande con pestañas arriba: <b>Tipo de formulario · Introducción · Preguntas · Privacidad · Final</b>. Las vas a recorrer en ese orden.</span></div>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section id="p2">
+        <h2><span class="n">2</span>Pestaña "Tipo de formulario"</h2>
+        <div class="step-grid">
+          <div class="block">
+            <h4>Qué haces</h4>
+            <p>Verás dos opciones: <span class="ui">Más volumen</span> y <span class="ui">Mayor intención</span>. Marca <b>Mayor intención</b>. Eso agrega una pantalla de revisión al final para que la gente confirme sus datos antes de enviar.</p>
+          </div>
+          <div class="check"><span class="ico">✓</span><span>Quedó bien si la opción <b>Mayor intención</b> aparece marcada. Pasa a la siguiente pestaña.</span></div>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section id="p3">
+        <h2><span class="n">3</span>Pestaña "Introducción"</h2>
+        <div class="step-grid">
+          <div class="block">
+            <h4>Qué haces</h4>
+            <ol>
+              <li>En <span class="ui">Título</span> pega el texto de abajo.</li>
+              <li>En <span class="ui">Imagen</span> deja <b>Usar la imagen de la Página</b>.</li>
+              <li>En <span class="ui">Formato</span> (a veces se llama <span class="ui">Diseño</span>) elige <b>Lista</b>. Aparecen renglones para viñetas: pega una frase por renglón.</li>
+            </ol>
+          </div>
+          <div class="block">
+            <h4>Qué escribes</h4>
+            <div class="copy"><div><div class="label">Título</div><div class="text">Lanza o escala tu línea cosmética con nuestra planta</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Viñeta 1</div><div class="text">Lote estandarizado de catálogo desde 30 unidades por referencia</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Viñeta 2</div><div class="text">Personalización de aroma y color sobre nuestras bases desde 50 unidades</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Viñeta 3</div><div class="text">Fórmula exclusiva desarrollada en laboratorio desde 100 unidades</div></div><button type="button" data-copy>Copiar</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section id="p4">
+        <h2><span class="n">4</span>Pestaña "Preguntas": activar la lógica condicional</h2>
+        <div class="step-grid">
+          <div class="block">
+            <h4>Qué haces</h4>
+            <ol>
+              <li>Arriba de la sección de preguntas hay un interruptor que dice <span class="ui">Lógica condicional</span>. <b>Actívalo</b> (queda azul o verde).</li>
+              <li>Si Meta te muestra un aviso de que "la lógica condicional puede aumentar el costo por lead", acepta. Es normal.</li>
+            </ol>
+          </div>
+          <div class="warn"><span class="ico">!</span><span>Con la lógica activada, <b>cada respuesta</b> de cada pregunta necesita un "siguiente paso". Si dejas una respuesta sin siguiente paso, el botón Publicar se queda gris. En los pasos 5 y 6 te digo exactamente qué poner en cada una.</span></div>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section id="p5">
+        <h2><span class="n">5</span>Pregunta 1 (la que filtra)</h2>
+        <div class="step-grid">
+          <div class="block">
+            <h4>Qué haces</h4>
+            <ol>
+              <li>Clic en <span class="ui">+ Agregar pregunta</span> → elige <span class="ui">Opción múltiple</span>.</li>
+              <li>Pega la pregunta y las 4 respuestas (una por renglón; usa <span class="ui">+ Agregar opción</span> si faltan renglones).</li>
+              <li>Al lado de cada respuesta aparece <span class="ui">Lógica</span> o <span class="ui">Elegir siguiente paso</span>. Sigue la tabla de abajo <b>respuesta por respuesta</b>.</li>
+            </ol>
+          </div>
+          <div class="block">
+            <h4>Qué escribes</h4>
+            <div class="copy"><div><div class="label">Pregunta 1</div><div class="text">¿Qué quieres producir?</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta A</div><div class="text">Productos de catálogo (desde 30 unidades)</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta B</div><div class="text">Catálogo con mi aroma y color (desde 50 unidades)</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta C</div><div class="text">Fórmula exclusiva (desde 100 unidades)</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta D</div><div class="text">Menos de 30 unidades o muestras</div></div><button type="button" data-copy>Copiar</button></div>
+          </div>
+          <div class="block">
+            <h4>Siguiente paso de cada respuesta</h4>
+            <div class="tbl-wrap"><table>
+              <thead><tr><th>Respuesta</th><th>Qué eliges en "Elegir siguiente paso"</th></tr></thead>
+              <tbody>
+                <tr><td>A. Productos de catálogo</td><td><span class="chip next">Ir a una pregunta</span> → en el popup, <span class="ui">Nueva pregunta</span> → escribe la <b>Pregunta 2</b> (paso 6) → <span class="ui">Agregar pregunta</span></td></tr>
+                <tr><td>B. Catálogo con mi aroma y color</td><td><span class="chip next">Ir a una pregunta</span> → ahora la Pregunta 2 ya existe: <b>elígela de la lista</b></td></tr>
+                <tr><td>C. Fórmula exclusiva</td><td><span class="chip next">Ir a una pregunta</span> → elige la <b>Pregunta 2</b> de la lista</td></tr>
+                <tr><td>D. Menos de 30 unidades o muestras</td><td><span class="chip stop">Cerrar formulario</span> → Meta avisa que creó una página final nueva. Dale <span class="ui">Ver</span> o <span class="ui">OK</span>; la editas en el paso 9.</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+          <div class="check"><span class="ico">✓</span><span>Quedó bien si las respuestas A, B y C dicen "Ir a: ¿Qué tipo de negocio tienes?" y la D dice "Cerrar formulario".</span></div>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section id="p6">
+        <h2><span class="n">6</span>Preguntas 2, 3 y 4</h2>
+        <p class="intro-text">Misma mecánica: pegar pregunta y respuestas, y a cada respuesta darle su siguiente paso. En las preguntas 2 y 3 <b>todas</b> las respuestas van a la siguiente pregunta. En la 4, <b>todas</b> envían el formulario.</p>
+
+        <div class="step-grid">
+          <div class="block">
+            <h4>Pregunta 2 (se crea desde la respuesta A de la pregunta 1)</h4>
+            <div class="copy"><div><div class="label">Pregunta 2</div><div class="text">¿Qué tipo de negocio tienes?</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 1</div><div class="text">Marca cosmética o tienda online</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 2</div><div class="text">Emprendimiento nuevo</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 3</div><div class="text">Salón, peluquería o distribuidora</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="tbl-wrap"><table>
+              <thead><tr><th>Respuesta</th><th>Siguiente paso</th></tr></thead>
+              <tbody>
+                <tr><td>Marca cosmética o tienda online</td><td><span class="chip next">Ir a una pregunta</span> → <span class="ui">Nueva pregunta</span> → crea la <b>Pregunta 3</b></td></tr>
+                <tr><td>Emprendimiento nuevo</td><td><span class="chip next">Ir a una pregunta</span> → elige la <b>Pregunta 3</b></td></tr>
+                <tr><td>Salón, peluquería o distribuidora</td><td><span class="chip next">Ir a una pregunta</span> → elige la <b>Pregunta 3</b></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <div class="block">
+            <h4>Pregunta 3</h4>
+            <div class="copy"><div><div class="label">Pregunta 3</div><div class="text">¿Cuándo separarías tu cupo en planta?</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 1</div><div class="text">Esta semana</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 2</div><div class="text">En 15 a 30 días</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 3</div><div class="text">Solo estoy investigando</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="tbl-wrap"><table>
+              <thead><tr><th>Respuesta</th><th>Siguiente paso</th></tr></thead>
+              <tbody>
+                <tr><td>Esta semana</td><td><span class="chip next">Ir a una pregunta</span> → <span class="ui">Nueva pregunta</span> → crea la <b>Pregunta 4</b></td></tr>
+                <tr><td>En 15 a 30 días</td><td><span class="chip next">Ir a una pregunta</span> → elige la <b>Pregunta 4</b></td></tr>
+                <tr><td>Solo estoy investigando</td><td><span class="chip next">Ir a una pregunta</span> → elige la <b>Pregunta 4</b></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <div class="block">
+            <h4>Pregunta 4 (la última)</h4>
+            <div class="copy"><div><div class="label">Pregunta 4</div><div class="text">¿Cuánto invertirías en tu primer lote?</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 1</div><div class="text">Menos de $2 millones</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 2</div><div class="text">$2 a $5 millones</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 3</div><div class="text">$5 a $15 millones</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Respuesta 4</div><div class="text">Más de $15 millones</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="tbl-wrap"><table>
+              <thead><tr><th>Respuesta</th><th>Siguiente paso</th></tr></thead>
+              <tbody>
+                <tr><td>Las 4 respuestas, una por una</td><td><span class="chip go">Enviar formulario</span> → en el popup elige <span class="ui">Página final para leads</span> (la que ya existe por defecto)</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <div class="check"><span class="ico">✓</span><span>Meta exige que exista al menos una respuesta con <b>Enviar formulario</b> y una con <b>Cerrar formulario</b>. Ya tienes las dos. Usa las flechas de la <b>vista previa</b> (a la derecha) para recorrer el formulario como lo vería un cliente: debe ir P1 → P2 → P3 → P4 sin saltos raros.</span></div>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section id="p7">
+        <h2><span class="n">7</span>Información de contacto</h2>
+        <div class="step-grid">
+          <div class="block">
+            <h4>Qué haces</h4>
+            <ol>
+              <li>Dentro de la misma pestaña <span class="ui">Preguntas</span>, baja hasta <span class="ui">Información de contacto</span>.</li>
+              <li>En <span class="ui">Descripción</span> pega el texto de abajo.</li>
+              <li>En la lista de campos deja marcados solo estos cuatro: <b>Nombre completo · Número de teléfono · Nombre de la empresa · Ciudad</b>. Están en categorías (Información de contacto, Información laboral, Ubicación): abre cada una y márcalos.</li>
+              <li>Si <span class="ui">Correo electrónico</span> aparece marcado por defecto, <b>quítalo</b>.</li>
+            </ol>
+          </div>
+          <div class="block">
+            <h4>Qué escribes</h4>
+            <div class="copy"><div><div class="label">Descripción del bloque de contacto</div><div class="text">Déjanos tus datos y te escribimos por WhatsApp con la propuesta comercial. Si aún no tienes empresa, escribe el nombre de tu proyecto.</div></div><button type="button" data-copy>Copiar</button></div>
+          </div>
+          <div class="warn"><span class="ico">!</span><span>No crees preguntas nuevas para nombre, teléfono, empresa o ciudad: Meta las tiene como campos "prellenados" (se autocompletan desde el perfil) y <b>prohíbe duplicarlas</b> como pregunta personalizada.</span></div>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section id="p8">
+        <h2><span class="n">8</span>Pestaña "Privacidad"</h2>
+        <div class="step-grid">
+          <div class="block">
+            <h4>Qué haces</h4>
+            <ol>
+              <li>En <span class="ui">Enlace a la política de privacidad</span> pega el link de la política de Magenta Capilar.</li>
+              <li>En <span class="ui">Texto del enlace</span> escribe: <b>Política de privacidad</b>.</li>
+              <li>La <span class="ui">Renuncia de responsabilidad personalizada</span> déjala vacía.</li>
+            </ol>
+          </div>
+          <div class="warn"><span class="ico">!</span><span>Sin este link el botón <b>Publicar</b> no se activa. Si Magenta no tiene política de privacidad publicada, este es el momento de pedirla.</span></div>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section id="p9">
+        <h2><span class="n">9</span>Pestaña "Final": las dos pantallas de cierre</h2>
+        <p class="intro-text">Aquí ves dos páginas finales: la de <b>leads</b> (quien terminó las 4 preguntas) y la que se creó sola cuando pusiste "Cerrar formulario" en la respuesta D.</p>
+
+        <div class="step-grid">
+          <div class="block">
+            <h4>Página final para leads</h4>
+            <div class="copy"><div><div class="label">Título</div><div class="text">¡Listo! Revisemos tu cupo en planta</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Descripción</div><div class="text">Recibimos tu solicitud. Escríbenos ahora por WhatsApp y te enviamos la propuesta comercial según el lote que elegiste.</div></div><button type="button" data-copy>Copiar</button></div>
+            <p><b>Botón:</b> en <span class="ui">Llamada a la acción</span> busca <span class="ui">Chatear en WhatsApp</span>. Si aparece, elígelo (te pedirá conectar la cuenta de WhatsApp Business de la Página si no está vinculada). Si <b>no</b> aparece, elige <span class="ui">Ver sitio web</span> y pega este link, cambiando <code>57XXXXXXXXXX</code> por el número real:</p>
+            <div class="copy"><div><div class="label">Link para "Ver sitio web" (WhatsApp con mensaje listo)</div><div class="text">https://wa.me/57XXXXXXXXXX?text=Hola%2C%20llen%C3%A9%20el%20formulario%20de%20Magenta%20Capilar%20y%20quiero%20revisar%20la%20propuesta%20y%20separar%20mi%20cupo%20en%20planta.</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Texto del botón</div><div class="text">Hablar con un asesor</div></div><button type="button" data-copy>Copiar</button></div>
+          </div>
+
+          <div class="block">
+            <h4>Página final para "Cerrar formulario" (menos de 30 unidades)</h4>
+            <div class="copy"><div><div class="label">Título</div><div class="text">Fabricamos desde 30 unidades por referencia</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Descripción</div><div class="text">¡Gracias por tu interés en Magenta Capilar! Para pedidos menores o kits de prueba (desde 6 unidades sin etiqueta), mira el catálogo y haz tu pedido directo por WhatsApp.</div></div><button type="button" data-copy>Copiar</button></div>
+            <p><b>Botón:</b> <span class="ui">Ver sitio web</span> con este link (cambia el número):</p>
+            <div class="copy"><div><div class="label">Link para "Ver sitio web"</div><div class="text">https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20ver%20el%20cat%C3%A1logo%20y%20pedir%20un%20kit%20de%20prueba%20de%20Magenta%20Capilar.</div></div><button type="button" data-copy>Copiar</button></div>
+            <div class="copy"><div><div class="label">Texto del botón</div><div class="text">Pedir kit de prueba</div></div><button type="button" data-copy>Copiar</button></div>
+          </div>
+
+          <div class="check"><span class="ico">✓</span><span>En la vista previa, elige la respuesta D en la pregunta 1: debe saltar directo a la pantalla "Fabricamos desde 30 unidades". Elige A y sigue hasta el final: debe terminar en "¡Listo! Revisemos tu cupo en planta".</span></div>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section id="p10">
+        <h2><span class="n">10</span>Publicar</h2>
+        <div class="step-grid">
+          <div class="block">
+            <h4>Qué haces</h4>
+            <ol>
+              <li>Arriba a la derecha, clic en <span class="ui">Publicar</span>. (Si prefieres, <span class="ui">Guardar borrador</span> te deja seguir después, pero un borrador <b>no sirve</b> para el anuncio.)</li>
+              <li>Meta puede mostrar un resumen con advertencias. Si solo son advertencias (amarillas), publica igual.</li>
+            </ol>
+          </div>
+          <div class="warn"><span class="ico">!</span><span>Si <b>Publicar</b> está gris, revisa en este orden: (1) falta el link de privacidad, (2) alguna respuesta quedó sin "siguiente paso", (3) alguna página final quedó sin título. La vista previa marca en rojo la sección incompleta.</span></div>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section id="p11">
+        <h2><span class="n">11</span>Enviar el ID del formulario</h2>
+        <div class="step-grid">
+          <div class="block">
+            <h4>Qué haces</h4>
+            <ol>
+              <li>Vuelve a la lista de <span class="ui">Formularios instantáneos</span>.</li>
+              <li>En la fila del formulario nuevo hay una columna <b>ID</b> con un número largo (15–17 dígitos). Si no ves la columna, abre el formulario: el número también está en la URL después de <code>form_id=</code>.</li>
+              <li>Copia ese número y envíaselo a Jacobo. Con eso se crean los 36 anuncios (30 videos + 6 diseños) en la campaña que ya está lista, programada para arrancar el <b>1 de octubre a las 00:00</b>.</li>
+            </ol>
+          </div>
+          <div class="check"><span class="ico">✓</span><span>Ejemplo de cómo se ve un ID: <b>1234567890123456</b>. No es el nombre, es el número.</span></div>
+        </div>
+      </section>
+
+      <!-- Ayuda -->
+      <section id="ayuda">
+        <h2><span class="n">?</span>Si algo sale mal</h2>
+        <div class="step-grid">
+          <details><summary>No aparece el interruptor "Lógica condicional"</summary><p>Está en la pestaña <b>Preguntas</b>, arriba de las preguntas personalizadas. Si no lo ves, cierra el editor, verifica que estás creando el formulario desde <b>Ads Manager</b> (no desde la app de Meta Business Suite en el celular) y vuelve a entrar. El constructor del celular no tiene lógica condicional.</p></details>
+          <details><summary>No aparece "Chatear en WhatsApp" como botón final</summary><p>Ese botón solo sale si la Página está vinculada a una cuenta de <b>WhatsApp Business</b> (no WhatsApp personal). Usa la alternativa <b>Ver sitio web</b> con el link <code>wa.me</code> que está en el paso 9: funciona igual para el cliente.</p></details>
+          <details><summary>"Publicar" está gris</summary><p>Casi siempre es el link de política de privacidad (paso 8). Después: alguna respuesta sin "siguiente paso" (pasos 5 y 6) o una página final sin título (paso 9). Recorre la vista previa: Meta marca en rojo lo que falta.</p></details>
+          <details><summary>Me equivoqué en el orden de las preguntas</summary><p>Cada respuesta tiene su "Ir a una pregunta": puedes cambiarlo sin borrar nada. Elige la respuesta, clic en el siguiente paso y selecciona la pregunta correcta de la lista.</p></details>
+          <details><summary>Meta dice que la lógica condicional puede subir el costo por lead</summary><p>Es un aviso estándar. Se acepta: preferimos menos leads pero de gente que sí puede pedir 30 unidades o más.</p></details>
+          <details><summary>La clienta no tiene política de privacidad</summary><p>Necesita una página pública con su política (cualquier plantilla estándar de tratamiento de datos sirve, publicada en su sitio web). Sin eso Meta no permite publicar ningún formulario instantáneo.</p></details>
+        </div>
+      </section>
+
+      <footer>Guía preparada por Social Ecom para Magenta Capilar · Configuración del formulario verificada contra la documentación oficial de Meta (lógica condicional, tipos de formulario, campos prellenados y pantallas finales) el 30 de septiembre de 2026.</footer>
+    </main>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('button[data-copy]');
+    Array.prototype.forEach.call(buttons, function (btn) {
+      btn.addEventListener('click', function () {
+        var box = btn.closest('.copy');
+        var text = box ? box.querySelector('.text').textContent : '';
+        var done = function () {
+          btn.textContent = 'Copiado';
+          btn.classList.add('done');
+          setTimeout(function () { btn.textContent = 'Copiar'; btn.classList.remove('done'); }, 1600);
+        };
+        var fallback = function () {
+          try {
+            var range = document.createRange();
+            range.selectNodeContents(box.querySelector('.text'));
+            var sel = window.getSelection();
+            sel.removeAllRanges(); sel.addRange(range);
+            document.execCommand('copy');
+            sel.removeAllRanges();
+            done();
+          } catch (e) { btn.textContent = 'Selecciona y copia'; }
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
